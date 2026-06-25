@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kadima Integration Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand">
+    <img src="/assets/logo-white.svg" alt="Kadima" />
+    <span class="env">Sandbox</span>
+  </div>
+  <nav class="nav" id="nav">
+    <button data-tab="overview" class="active"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</button>
+    <button data-tab="hf"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Hosted Fields</button>
+    <button data-tab="card"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>Card (S2S)</button>
+    <button data-tab="ach"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10M19 21V10M3 10l9-7 9 7M9 21v-6h6v6"/></svg>ACH / eCheck</button>
+    <button data-tab="vault"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v3M12 18v3"/></svg>Customer Vault</button>
+    <button data-tab="webhooks"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Webhooks</button>
+  </nav>
+  <div class="foot">
+    <b>Kadima Payments Demo Merchant</b><br/>
+    Terminal <b id="f-term">404</b> · DBA <b id="f-dba">466</b><br/>
+    Direct integration — no middle gateway.
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <h1 id="title">Overview</h1>
+    <div class="merchant">Connected: <b>Kadima sandbox</b> · token held server-side</div>
+  </div>
+  <div class="content">
+
+    <!-- OVERVIEW -->
+    <section class="panel active" data-panel="overview">
+      <h2 class="section">A direct line to <span class="grad">Kadima</span> — card &amp; ACH, no middle gateway</h2>
+      <p class="sub">Any merchant boarded with Kadima can process natively through this integration. Card data is collected by Kadima Hosted Fields (PCI SAQ-A) — it never touches your servers. Everything below is wired to the live Kadima sandbox.</p>
+      <div class="grid">
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><h4>Hosted Fields</h4><p>Browser-side card capture &amp; tokenization. Auth, sale, 3DS — PCI SAQ-A scope.</p><span class="tag live">Live tested</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 6h14M5 18h14"/></svg><h4>Auth / Sale / Capture</h4><p>Auth-then-capture or one-shot sale. Partial &amp; multiple captures supported.</p><span class="tag live">Live tested</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9M3 12l4-4M3 12l4 4"/></svg><h4>Refund / Void / Reversal</h4><p>Full &amp; partial refunds; unsettled auto-reverses with an auth code.</p><span class="tag live">Live tested</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10M19 21V10M3 10l9-7 9 7"/></svg><h4>ACH / eCheck</h4><p>Debit &amp; credit, SEC codes PPD/CCD/WEB/TEL, async settle/return via webhook.</p><span class="tag live">Live tested</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3.5"/></svg><h4>Customer Vault</h4><p>Store customers, billing &amp; tokenized cards for repeat &amp; recurring billing.</p><span class="tag live">Live tested</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg><h4>Webhooks</h4><p>SHA-512 signed events: transactions, ACH status, chargebacks. Verified server-side.</p><span class="tag live">Verified</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.3L18 20l-6-3-6 3 1.5-6.8L3 8.9 9 8z"/></svg><h4>3D Secure</h4><p>3DS verification through Hosted Fields; AMEX shipping/billing handled.</p><span class="tag s2s">Available</span></div>
+        <div class="cap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg><h4>Account Updater</h4><p>Auto-refresh stored card expiries to cut declines on recurring charges.</p><span class="tag s2s">Available</span></div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="accent"></div>
+        <h3>How card data stays out of scope</h3>
+        <div class="flow">
+          <div class="stp"><div class="n">1</div><div><b>Mint a Hosted Fields token</b><p>Server calls <code>POST /api/hosted-fields/token</code> with the merchant terminal. The browser never sees the API token.</p></div></div>
+          <div class="stp"><div class="n">2</div><div><b>Customer enters the card in Kadima's iframe</b><p><code>HostedFields.create()</code> renders isolated fields. The PAN goes straight to Kadima — never to your backend.</p></div></div>
+          <div class="stp"><div class="n">3</div><div><b>Kadima processes &amp; tokenizes</b><p>Auth or sale happens client-side; an <code>externalId</code> carries your order/session id.</p></div></div>
+          <div class="stp"><div class="n">4</div><div><b>You reconcile via webhook</b><p><code>transaction/create</code> arrives signed; the backend matches it by <code>externalId</code> and records the payment.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOSTED FIELDS -->
+    <section class="panel" data-panel="hf">
+      <h2 class="section">Hosted Fields — live card capture</h2>
+      <p class="sub">PCI SAQ-A. Mint a single-use token, render Kadima's secure fields, and take a real sandbox payment. Use a test card (e.g. <b>4111 1111 1111 1111</b>, exp <b>12/30</b>, cvv <b>999</b>).</p>
+      <div class="card"><div class="accent"></div>
+        <h3>1 · Mint a Hosted Fields token</h3>
+        <div class="row">
+          <div class="fg"><label>Amount (USD)</label><input id="hf-amount" value="12.34" /></div>
+          <div class="fg"><label>externalId (order/session)</label><input id="hf-ext" value="demo-order-001" /></div>
+          <div class="fg"><label>Save card</label><select id="hf-save"><option>optional</option><option>required</option><option>disabled</option></select></div>
+        </div>
+        <div class="btnrow"><button class="btn btn-primary" id="hf-mint">Mint token &amp; render fields</button></div>
+        <div class="result" id="hf-token-res"><div class="rhead"><span>Hosted Fields token</span><span class="pill muted" id="hf-token-pill">—</span></div><pre id="hf-token-pre"></pre></div>
+      </div>
+      <div class="card"><div class="accent"></div>
+        <h3>2 · Pay with the secure fields</h3>
+        <p class="hint">These inputs are served by Kadima inside iframes — the card number never reaches this page or the console backend.</p>
+        <div id="hf-fields">
+          <div id="hf-card-number"></div>
+          <div id="hf-card-expiration"></div>
+          <div id="hf-card-cvv"></div>
+          <div id="hf-card-holder-name"></div>
+          <div id="hf-submit"></div>
+        </div>
+        <div class="hf-status" id="hf-status">Mint a token above to enable the form.</div>
+      </div>
+    </section>
+
+    <!-- CARD S2S -->
+    <section class="panel" data-panel="card">
+      <h2 class="section">Card — server-to-server</h2>
+      <p class="sub">For stored tokens, recurring (MIT) and MOTO. Runs against <code>sandbox-gateway.kadimadashboard.com</code>. (Raw test PANs are used here only because these are sandbox test cards.)</p>
+      <div class="card"><div class="accent"></div>
+        <h3>Auth → Capture → Refund</h3>
+        <div class="row">
+          <div class="fg"><label>Card number</label><input id="c-num" value="4111111111111111" /></div>
+          <div class="fg"><label>Exp (mm/yy)</label><input id="c-exp" value="12/30" /></div>
+          <div class="fg"><label>CVV</label><input id="c-cvv" value="999" /></div>
+          <div class="fg"><label>Amount</label><input id="c-amt" value="25.00" /></div>
+        </div>
+        <div class="btnrow">
+          <button class="btn btn-primary" id="c-auth">Authorize</button>
+          <button class="btn btn-ghost" id="c-cap" disabled>Capture</button>
+          <button class="btn btn-ghost" id="c-ref" disabled>Refund</button>
+          <button class="btn btn-ghost" id="c-tok">Tokenize only</button>
+          <button class="btn btn-ghost" id="c-zero">$0 verify</button>
+        </div>
+        <div class="result" id="c-res"><div class="rhead"><span id="c-res-t">Result</span><span class="pill muted" id="c-pill">—</span></div><pre id="c-pre"></pre></div>
+      </div>
+    </section>
+
+    <!-- ACH -->
+    <section class="panel" data-panel="ach">
+      <h2 class="section">ACH / eCheck</h2>
+      <p class="sub">Bank debits &amp; credits via <code>/api/ach</code>. Asynchronous: a debit is created <b>Pending</b>, then settles or returns later via webhook. Use a checksum-valid routing number (e.g. <b>021000021</b>).</p>
+      <div class="card"><div class="accent"></div>
+        <h3>Create a debit</h3>
+        <div class="row">
+          <div class="fg"><label>Account name</label><input id="a-name" value="John Wick" /></div>
+          <div class="fg"><label>Account #</label><input id="a-acct" value="1234567890" /></div>
+          <div class="fg"><label>Routing (ABA)</label><input id="a-route" value="021000021" /></div>
+        </div>
+        <div class="row">
+          <div class="fg"><label>Type</label><select id="a-type"><option>Checking</option><option>Savings</option></select></div>
+          <div class="fg"><label>SEC code</label><select id="a-sec"><option>PPD</option><option>CCD</option><option>WEB</option><option>TEL</option></select></div>
+          <div class="fg"><label>Amount</label><input id="a-amt" value="9.99" /></div>
+          <div class="fg"><label>Customer email</label><input id="a-email" value="demo@kadimapayments.com" /></div>
+        </div>
+        <div class="btnrow">
+          <button class="btn btn-primary" id="a-debit">Create debit</button>
+          <button class="btn btn-ghost" id="a-get" disabled>Refresh status</button>
+          <button class="btn btn-ghost" id="a-void" disabled>Void</button>
+        </div>
+        <div class="result" id="a-res"><div class="rhead"><span id="a-res-t">Result</span><span class="pill muted" id="a-pill">—</span></div><pre id="a-pre"></pre></div>
+      </div>
+    </section>
+
+    <!-- VAULT -->
+    <section class="panel" data-panel="vault">
+      <h2 class="section">Customer Vault</h2>
+      <p class="sub">Store a customer, a billing record, and a tokenized card for repeat &amp; recurring billing. Chained flow: customer → billing → card.</p>
+      <div class="card"><div class="accent"></div>
+        <h3>Create customer → billing → card</h3>
+        <div class="row">
+          <div class="fg"><label>First name</label><input id="v-first" value="Demo" /></div>
+          <div class="fg"><label>Last name</label><input id="v-last" value="Merchant" /></div>
+          <div class="fg"><label>Email</label><input id="v-email" value="vault@kadimapayments.com" /></div>
+          <div class="fg"><label>Phone</label><input id="v-phone" value="+18187740010" /></div>
+        </div>
+        <div class="row">
+          <div class="fg"><label>Card number</label><input id="v-num" value="4111111111111111" /></div>
+          <div class="fg"><label>Exp (mm/yy)</label><input id="v-exp" value="12/30" /></div>
+          <div class="fg"><label>CVV</label><input id="v-cvv" value="999" /></div>
+        </div>
+        <div class="btnrow">
+          <button class="btn btn-primary" id="v-run">Run full vault flow</button>
+          <button class="btn btn-ghost" id="v-list" disabled>List cards</button>
+        </div>
+        <div class="result" id="v-res"><div class="rhead"><span id="v-res-t">Result</span><span class="pill muted" id="v-pill">—</span></div><pre id="v-pre"></pre></div>
+      </div>
+    </section>
+
+    <!-- WEBHOOKS -->
+    <section class="panel" data-panel="webhooks">
+      <h2 class="section">Webhooks</h2>
+      <p class="sub">Point a Kadima webhook URL at <code>/api/webhooks/kadima</code>. Each event's <code>Webhook-Signature</code> is verified as <code>SHA-512(secret + id + module + action + date)</code> before it's accepted. Received events appear below.</p>
+      <div class="card"><div class="accent"></div>
+        <h3>Received events <button class="btn btn-ghost" id="wh-refresh" style="float:right;padding:6px 14px;font-size:12px">Refresh</button></h3>
+        <table class="events"><thead><tr><th>Received</th><th>Module</th><th>Action</th><th>Signature</th></tr></thead><tbody id="wh-body"></tbody></table>
+        <div class="empty" id="wh-empty">No events yet. Configure a Kadima webhook to <code>/api/webhooks/kadima</code> with secret <b>pKXH…92P</b>.</div>
+      </div>
+    </section>
+
+  </div>
+</main>
+<script src="https://sandbox.kadimadashboard.com/js/HostedFields.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,723 @@
+{
+  "hostedFieldsToken": {
+    "ok": true,
+    "data": {
+      "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5rYWRpbWFkYXNoYm9hcmQuY29tIiwic3ViIjoiSG9zdGVkIEZpZWxkcyBBY2Nlc3NUb2tlbiIsImF1ZCI6bnVsbCwiZXhwIjoxNzgxMzQ0ODI4LCJpYXQiOjE3ODEzNDMwMjgsInNhdmVDYXJkIjoib3B0aW9uYWwiLCJ0aHJlZWRzIjpmYWxzZSwiaWZyYW1lU3JjIjoiaHR0cHM6XC9cL3NhbmRib3gua2FkaW1hZGFzaGJvYXJkLmNvbVwvZ2F0ZXdheVwvaG9zdGVkLWZpZWxkcyIsImRvbWFpbiI6Imh0dHBzOlwvXC9rYWRpbWFwYXltZW50cy5jb20iLCJjbGllbnQiOnsib3duZXJfaWQiOjc1NywidGVybWluYWwiOjQwNH19.meMUwDOyt4qKCheW99qadyC0wO4HzpmaRP91ZlsFe3s",
+      "issued_at": 1781343028,
+      "expiration": 30,
+      "expires_at": "2026-06-13 10:00:28 UTC"
+    }
+  },
+  "cardAuthentication": {
+    "ok": true,
+    "data": {
+      "id": 217943,
+      "amount": "0.00",
+      "origin": "API",
+      "type": "CardAuthentication",
+      "level": 1,
+      "authCode": "PREATH",
+      "parent": {
+        "id": null
+      },
+      "terminal": {
+        "id": 404
+      },
+      "threeds": {
+        "id": null,
+        "eci": null,
+        "aav": null,
+        "cavv": null
+      },
+      "card": {
+        "bin": 411111,
+        "name": "John Wick",
+        "number": 1111,
+        "exp": "2030-12-31",
+        "verification": {
+          "cvv": "M",
+          "address": "0"
+        },
+        "networkTransactionId": null
+      },
+      "contact": null,
+      "externalId": "smoke-1781343027-cardauth",
+      "isRecurring": "No",
+      "split": null,
+      "refunded": false,
+      "captured": false,
+      "history": [],
+      "order": null,
+      "feeTransaction": null,
+      "batch": {
+        "id": null,
+        "number": null,
+        "batchedOn": null
+      },
+      "ip": {
+        "address": "104.33.208.74",
+        "isp": "Spectrum",
+        "type": "residential",
+        "location": {
+          "city": "Canoga Park",
+          "state": "CA",
+          "country": "US",
+          "zip": "91303"
+        },
+        "info": {
+          "isAnonymous": "No",
+          "isAnonymousVpn": "No",
+          "isPublicProxy": "No",
+          "isHostingProvider": "No",
+          "isTorExitNode": "No"
+        }
+      },
+      "status": {
+        "status": "Approved",
+        "reason": null
+      },
+      "updatedOn": null,
+      "createdOn": "2026-06-13 09:30:29"
+    }
+  },
+  "generateToken": {
+    "ok": true,
+    "data": {
+      "id": 217944,
+      "amount": "0.00",
+      "origin": "API",
+      "type": "GenerateToken",
+      "level": 1,
+      "authCode": null,
+      "parent": {
+        "id": null
+      },
+      "terminal": {
+        "id": 404
+      },
+      "threeds": {
+        "id": null,
+        "eci": null,
+        "aav": null,
+        "cavv": null
+      },
+      "card": {
+        "bin": 411111,
+        "name": "John Wick",
+        "number": 1111,
+        "exp": "2030-12-31",
+        "verification": {
+          "cvv": null,
+          "address": null
+        },
+        "networkTransactionId": null,
+        "token": "SDAtngMXzdjd1111"
+      },
+      "contact": null,
+      "externalId": null,
+      "isRecurring": "No",
+      "split": null,
+      "refunded": false,
+      "captured": false,
+      "history": [],
+      "order": null,
+      "feeTransaction": null,
+      "batch": {
+        "id": null,
+        "number": null,
+        "batchedOn": null
+      },
+      "ip": {
+        "address": "104.33.208.74",
+        "isp": "Spectrum",
+        "type": "residential",
+        "location": {
+          "city": "Canoga Park",
+          "state": "CA",
+          "country": "US",
+          "zip": "91303"
+        },
+        "info": {
+          "isAnonymous": "No",
+          "isAnonymousVpn": "No",
+          "isPublicProxy": "No",
+          "isHostingProvider": "No",
+          "isTorExitNode": "No"
+        }
+      },
+      "status": {
+        "status": "Approved",
+        "reason": null
+      },
+      "updatedOn": null,
+      "createdOn": "2026-06-13 09:30:31"
+    }
+  },
+  "auth": {
+    "ok": true,
+    "data": {
+      "id": 217945,
+      "amount": "12.34",
+      "origin": "API",
+      "type": "Auth",
+      "level": 1,
+      "authCode": "TAS342",
+      "parent": {
+        "id": null
+      },
+      "terminal": {
+        "id": 404
+      },
+      "threeds": {
+        "id": null,
+        "eci": null,
+        "aav": null,
+        "cavv": null
+      },
+      "card": {
+        "bin": 411111,
+        "name": "John Wick",
+        "number": 1111,
+        "exp": "2030-12-31",
+        "verification": {
+          "cvv": "M",
+          "address": "0"
+        },
+        "networkTransactionId": "000000000511571"
+      },
+      "contact": null,
+      "externalId": "smoke-1781343027-auth",
+      "isRecurring": "No",
+      "split": null,
+      "refunded": false,
+      "captured": false,
+      "history": [],
+      "order": null,
+      "feeTransaction": null,
+      "batch": {
+        "id": null,
+        "number": null,
+        "batchedOn": null
+      },
+      "ip": {
+        "address": "104.33.208.74",
+        "isp": "Spectrum",
+        "type": "residential",
+        "location": {
+          "city": "Canoga Park",
+          "state": "CA",
+          "country": "US",
+          "zip": "91303"
+        },
+        "info": {
+          "isAnonymous": "No",
+          "isAnonymousVpn": "No",
+          "isPublicProxy": "No",
+          "isHostingProvider": "No",
+          "isTorExitNode": "No"
+        }
+      },
+      "status": {
+        "status": "Approved",
+        "reason": null
+      },
+      "updatedOn": null,
+      "createdOn": "2026-06-13 09:30:32"
+    }
+  },
+  "capture": {
+    "ok": true,
+    "data": {
+      "id": 217946,
+      "amount": "12.34",
+      "origin": "API",
+      "type": "Capture",
+      "level": 1,
+      "authCode": null,
+      "parent": {
+        "id": 217945
+      },
+      "terminal": {
+        "id": 404
+      },
+      "threeds": {
+        "id": null,
+        "eci": null,
+        "aav": null,
+        "cavv": null
+      },
+      "card": {
+        "bin": 411111,
+        "name": null,
+        "number": 1111,
+        "exp": "2030-12-31",
+        "verification": {
+          "cvv": null,
+          "address": null
+        },
+        "networkTransactionId": null
+      },
+      "contact": null,
+      "externalId": null,
+      "isRecurring": "No",
+      "split": null,
+      "refunded": false,
+      "captured": false,
+      "history": [],
+      "order": null,
+      "feeTransaction": null,
+      "batch": {
+        "id": null,
+        "number": null,
+        "batchedOn": null
+      },
+      "ip": {
+        "address": "104.33.208.74",
+        "isp": "Spectrum",
+        "type": "residential",
+        "location": {
+          "city": "Canoga Park",
+          "state": "CA",
+          "country": "US",
+          "zip": "91303"
+        },
+        "info": {
+          "isAnonymous": "No",
+          "isAnonymousVpn": "No",
+          "isPublicProxy": "No",
+          "isHostingProvider": "No",
+          "isTorExitNode": "No"
+        }
+      },
+      "status": {
+        "status": "Approved",
+        "reason": null
+      },
+      "updatedOn": null,
+      "createdOn": "2026-06-13 09:30:32"
+    }
+  },
+  "refund": {
+    "ok": true,
+    "data": {
+      "id": 217947,
+      "amount": "12.34",
+      "origin": "API",
+      "type": "Return",
+      "level": 1,
+      "authCode": null,
+      "parent": {
+        "id": 217945
+      },
+      "terminal": {
+        "id": 404
+      },
+      "threeds": {
+        "id": null,
+        "eci": null,
+        "aav": null,
+        "cavv": null
+      },
+      "card": {
+        "bin": 411111,
+        "name": null,
+        "number": 1111,
+        "exp": "2030-12-31",
+        "verification": {
+          "cvv": null,
+          "address": null
+        },
+        "networkTransactionId": null
+      },
+      "contact": null,
+      "externalId": null,
+      "isRecurring": "No",
+      "split": null,
+      "refunded": false,
+      "captured": false,
+      "history": [],
+      "order": null,
+      "feeTransaction": null,
+      "batch": {
+        "id": null,
+        "number": null,
+        "batchedOn": null
+      },
+      "ip": {
+        "address": "104.33.208.74",
+        "isp": "Spectrum",
+        "type": "residential",
+        "location": {
+          "city": "Canoga Park",
+          "state": "CA",
+          "country": "US",
+          "zip": "91303"
+        },
+        "info": {
+          "isAnonymous": "No",
+          "isAnonymousVpn": "No",
+          "isPublicProxy": "No",
+          "isHostingProvider": "No",
+          "isTorExitNode": "No"
+        }
+      },
+      "status": {
+        "status": "Approved",
+        "reason": null
+      },
+      "updatedOn": null,
+      "createdOn": "2026-06-13 09:30:33"
+    }
+  },
+  "saleWithToken": {
+    "ok": true,
+    "data": {
+      "id": 217948,
+      "amount": "5.55",
+      "origin": "API",
+      "type": "Auth",
+      "level": 1,
+      "authCode": "TAS349",
+      "parent": {
+        "id": null
+      },
+      "terminal": {
+        "id": 404
+      },
+      "threeds": {
+        "id": null,
+        "eci": null,
+        "aav": null,
+        "cavv": null
+      },
+      "card": {
+        "bin": 411111,
+        "name": "John Wick",
+        "number": 1111,
+        "exp": "2030-12-31",
+        "verification": {
+          "cvv": null,
+          "address": "0"
+        },
+        "networkTransactionId": "000000000511579"
+      },
+      "contact": null,
+      "externalId": "smoke-1781343027-saletoken",
+      "isRecurring": "No",
+      "split": null,
+      "refunded": false,
+      "captured": true,
+      "history": [
+        {
+          "id": 217949,
+          "type": "Capture",
+          "amount": "5.55",
+          "createdOn": "2026-06-13 09:30:36"
+        }
+      ],
+      "order": null,
+      "feeTransaction": null,
+      "batch": {
+        "id": null,
+        "number": null,
+        "batchedOn": null
+      },
+      "ip": {
+        "address": "104.33.208.74",
+        "isp": "Spectrum",
+        "type": "residential",
+        "location": {
+          "city": "Canoga Park",
+          "state": "CA",
+          "country": "US",
+          "zip": "91303"
+        },
+        "info": {
+          "isAnonymous": "No",
+          "isAnonymousVpn": "No",
+          "isPublicProxy": "No",
+          "isHostingProvider": "No",
+          "isTorExitNode": "No"
+        }
+      },
+      "status": {
+        "status": "Approved",
+        "reason": null
+      },
+      "updatedOn": "2026-06-13 09:30:37",
+      "createdOn": "2026-06-13 09:30:35"
+    }
+  },
+  "achDebit": {
+    "ok": true,
+    "data": {
+      "id": 90785217,
+      "amount": 9.99,
+      "tax": 0,
+      "SECCode": "PPD",
+      "accountName": "John Wick",
+      "accountNumber": "XXXXX7890",
+      "accountType": "Checking",
+      "routingNumber": "021000021",
+      "checkNumber": null,
+      "traceNumber": null,
+      "transactionID": null,
+      "transactionType": "Debit",
+      "transactionDate": "2026-06-15 12:00:00",
+      "transactionStatus": "PENDING",
+      "addendaText": null,
+      "memo": null,
+      "file": {
+        "id": null,
+        "date": null
+      },
+      "dba": {
+        "id": 466,
+        "name": "Online Merchant"
+      },
+      "account": {
+        "id": null,
+        "name": "John Wick",
+        "type": "Checking",
+        "accountNumber": "XXXXX7890",
+        "routingNumber": "021000021"
+      },
+      "customer": {
+        "id": null,
+        "firstName": null,
+        "lastName": null,
+        "phone": null,
+        "email": "demo@kadimapayments.com",
+        "address1": null,
+        "address2": null,
+        "city": null,
+        "state": null,
+        "zipCode": null,
+        "identifier": null,
+        "sendReceipt": "No"
+      },
+      "recurring": {
+        "id": null,
+        "init": null,
+        "every": null,
+        "frequency": null,
+        "beginDate": null,
+        "endAfter": null,
+        "status": null
+      },
+      "verification": {
+        "status": "Pending",
+        "date": null
+      },
+      "source": "API",
+      "return": {
+        "code": null,
+        "date": null
+      },
+      "note": null,
+      "error": null,
+      "updatedOn": "2026-06-13 09:30:37",
+      "createdOn": "2026-06-13 09:30:38"
+    }
+  },
+  "achGet": {
+    "ok": true,
+    "data": {
+      "id": 90785217,
+      "amount": 9.99,
+      "tax": 0,
+      "SECCode": "PPD",
+      "accountName": "John Wick",
+      "accountNumber": "XXXXX7890",
+      "accountType": "Checking",
+      "routingNumber": "021000021",
+      "checkNumber": null,
+      "traceNumber": null,
+      "transactionID": null,
+      "transactionType": "Debit",
+      "transactionDate": "2026-06-15 12:00:00",
+      "transactionStatus": "PENDING",
+      "addendaText": null,
+      "memo": null,
+      "file": {
+        "id": null,
+        "date": null
+      },
+      "dba": {
+        "id": 466,
+        "name": "Online Merchant"
+      },
+      "account": {
+        "id": null,
+        "name": "John Wick",
+        "type": "Checking",
+        "accountNumber": "XXXXX7890",
+        "routingNumber": "021000021"
+      },
+      "customer": {
+        "id": null,
+        "firstName": null,
+        "lastName": null,
+        "phone": null,
+        "email": "demo@kadimapayments.com",
+        "address1": null,
+        "address2": null,
+        "city": null,
+        "state": null,
+        "zipCode": null,
+        "identifier": null,
+        "sendReceipt": "No"
+      },
+      "recurring": {
+        "id": null,
+        "init": null,
+        "every": null,
+        "frequency": null,
+        "beginDate": null,
+        "endAfter": null,
+        "status": null
+      },
+      "verification": {
+        "status": "Pending",
+        "date": null
+      },
+      "source": "API",
+      "return": {
+        "code": null,
+        "date": null
+      },
+      "note": null,
+      "error": null,
+      "updatedOn": "2026-06-13 09:30:37",
+      "createdOn": "2026-06-13 09:30:38"
+    }
+  },
+  "achVoid": {
+    "ok": false,
+    "error": "Kadima ACH HTTP 400: The requested ACH transaction cannot be voided."
+  },
+  "vaultCreateCustomer": {
+    "ok": true,
+    "data": {
+      "id": "8246",
+      "dba": {
+        "id": 466
+      },
+      "firstName": "Demo",
+      "lastName": "Merchant",
+      "company": null,
+      "email": "vault@kadimapayments.com",
+      "website": null,
+      "phone": "+1 818-774-0010",
+      "altPhone": null,
+      "identificator": "smoke-1781343027-vault",
+      "description": null,
+      "token": "B-jXUDgIobR_23JnaXdTFF6EdeyXvZS-",
+      "archived": null,
+      "updatedOn": null,
+      "createdOn": null
+    }
+  },
+  "vaultCreateBilling": {
+    "ok": true,
+    "data": {
+      "id": "5896",
+      "firstName": "Demo",
+      "lastName": "Merchant",
+      "address": "8320 Some Ave",
+      "state": "California",
+      "city": "Calabasas",
+      "zip": "85284",
+      "country": "United States",
+      "archived": "No",
+      "createdOn": "2026-06-13 09:30:39"
+    }
+  },
+  "vaultAddCard": {
+    "ok": true,
+    "data": {
+      "id": "3414",
+      "billing": {
+        "id": 5896
+      },
+      "number": "1111",
+      "bin": {
+        "bin": 411111,
+        "brand": "Visa",
+        "organization": "Jpmorgan Chase Bank, N.a.",
+        "type": "Credit",
+        "category": null,
+        "country": {
+          "name": "United States",
+          "code": "US"
+        }
+      },
+      "exp": "2030-12-31",
+      "token": "SDAtngMXzdjd1111",
+      "attempt": {
+        "date": null,
+        "retries": 0
+      },
+      "lastUsedOn": null,
+      "order": 50,
+      "status": "Active",
+      "archived": "No",
+      "note": null,
+      "createdOn": "2026-06-13 09:30:39"
+    }
+  },
+  "vaultListCards": {
+    "ok": true,
+    "data": {
+      "items": [
+        {
+          "id": 3414,
+          "billing": {
+            "id": 5896
+          },
+          "number": "1111",
+          "bin": {
+            "bin": 411111,
+            "brand": "Visa",
+            "organization": "Jpmorgan Chase Bank, N.a.",
+            "type": "Credit",
+            "category": null,
+            "country": {
+              "name": "United States",
+              "code": "US"
+            }
+          },
+          "exp": "2030-12-31",
+          "token": "SDAtngMXzdjd1111",
+          "attempt": {
+            "date": null,
+            "retries": 0
+          },
+          "lastUsedOn": null,
+          "order": 50,
+          "status": "Active",
+          "archived": "No",
+          "note": null,
+          "createdOn": "2026-06-13 09:30:39"
+        }
+      ],
+      "_links": {
+        "self": {
+          "href": "https://sandbox.kadimadashboard.com/api/customer-vault/8246/cards?page=1"
+        },
+        "first": {
+          "href": "https://sandbox.kadimadashboard.com/api/customer-vault/8246/cards?page=1"
+        },
+        "last": {
+          "href": "https://sandbox.kadimadashboard.com/api/customer-vault/8246/cards?page=1"
+        }
+      },
+      "_meta": {
+        "totalCount": 1,
+        "pageCount": 1,
+        "currentPage": 1,
+        "perPage": 30
+      }
+    }
+  }
+}

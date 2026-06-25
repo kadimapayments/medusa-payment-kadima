@@ -1,0 +1,62 @@
+{
+  "name": "medusa-payment-kadima",
+  "version": "0.1.0",
+  "description": "Medusa v2 payment provider for Kadima — direct card + ACH, no middle gateway",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "author": "Kadima Payments Inc.",
+  "homepage": "https://www.kadimapayments.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kadimapayments/medusa-payment-kadima.git"
+  },
+  "keywords": [
+    "medusa",
+    "medusa-plugin",
+    "medusa-v2",
+    "payment",
+    "payment-provider",
+    "kadima",
+    "card",
+    "ach",
+    "echeck",
+    "hosted-fields"
+  ],
+  "exports": {
+    ".": {
+      "types": "./.medusa/server/src/index.d.ts",
+      "import": "./.medusa/server/src/index.js"
+    },
+    "./providers/kadima-card": {
+      "types": "./.medusa/server/src/providers/kadima-card.d.ts",
+      "import": "./.medusa/server/src/providers/kadima-card.js"
+    },
+    "./providers/kadima-ach": {
+      "types": "./.medusa/server/src/providers/kadima-ach.d.ts",
+      "import": "./.medusa/server/src/providers/kadima-ach.js"
+    }
+  },
+  "files": [
+    ".medusa/server",
+    "src",
+    "storefront",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@medusajs/framework": "^2.0.0"
+  },
+  "devDependencies": {
+    "@medusajs/framework": "^2.17.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^2.0.0"
+  }
+}
