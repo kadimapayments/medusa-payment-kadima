@@ -150,7 +150,7 @@ async function gradientPng(w = 1400, h = 60) {
   {
     const s = P.addSlide(); base(s, pg())
     title(s, "Step 3 — Configure", "Register both providers on the Payment module in medusa-config.ts.")
-    codeBlock(s, 0.6, 1.8, 8.0, 4.7, [
+    codeBlock(s, 0.6, 1.8, 8.0, 4.45, [
       { t: "// medusa-config.ts", c: MUTED },
       { t: "modules: [{", c: T2 },
       { t: "  resolve: \"@medusajs/medusa/payment\",", c: T2 },
@@ -169,11 +169,19 @@ async function gradientPng(w = 1400, h = 60) {
       { t: "        secCode: \"WEB\", sandbox: true } },", c: T2 },
       { t: "  ] }", c: T2 }, { t: "}]", c: T2 },
     ], 10.5)
-    card(s, 8.85, 1.8, 3.88, 4.7)
+    card(s, 8.85, 1.8, 3.88, 4.45)
     s.addImage({ data: ic.gear, x: 9.15, y: 2.1, w: 0.42, h: 0.42 })
     s.addText("Then", { x: 9.7, y: 2.12, w: 2.8, h: 0.4, fontFace: HEAD, fontSize: 15, bold: true, color: WHITE, valign: "middle" })
-    const notes = ["Put your Kadima values in .env.", "Enable both providers in your region / sales channel.", "captureMethod: \"auth\" captures on fulfillment; \"sale\" captures now.", "Keep sandbox: true until you've tested."]
+    const notes = ["Put your Kadima values in .env.", "Enable both providers in your region / sales channel.", "captureMethod: \"auth\" captures on fulfillment; \"sale\" captures now.", "Set sandbox explicitly — sandbox: true to test, false for live."]
     notes.forEach((n, i) => { s.addImage({ data: ic.check, x: 9.15, y: 2.78 + i * 0.9, w: 0.2, h: 0.2 }); s.addText(n, { x: 9.45, y: 2.72 + i * 0.9, w: 3.1, h: 0.85, fontFace: BODY, fontSize: 11, color: T2, valign: "top", lineSpacingMultiple: 1.1 }) })
+
+    // Footgun callout — the #1 cause of a 401 on first deploy.
+    s.addShape(P.shapes.RECTANGLE, { x: 0.6, y: 6.4, w: 12.13, h: 0.6, fill: { color: "2A1E0E" }, line: { color: "C98A2B", width: 1 } })
+    s.addImage({ data: ic.bolt, x: 0.8, y: 6.55, w: 0.3, h: 0.3 })
+    s.addText([
+      { text: "Don't derive sandbox from NODE_ENV", options: { bold: true, color: "F0B454" } },
+      { text: " — Railway/Render/Vercel set NODE_ENV=production, which sends sandbox creds to the live host (401). The plugin logs its resolved host + sandbox + token on startup — check that first.", options: { color: T2 } },
+    ], { x: 1.25, y: 6.44, w: 11.3, h: 0.52, fontFace: BODY, fontSize: 10.5, valign: "middle", lineSpacingMultiple: 1.0 })
   }
 
   // 7 STEP 4 STOREFRONT
