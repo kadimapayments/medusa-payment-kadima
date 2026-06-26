@@ -1,6 +1,6 @@
 import { ModuleProvider, Modules } from "@medusajs/framework/utils"
-import KadimaCardProviderService from "./providers/kadima-card"
-import KadimaAchProviderService from "./providers/kadima-ach"
+import { KadimaCardProviderService } from "./providers/kadima-card"
+import { KadimaAchProviderService } from "./providers/kadima-ach"
 
 /**
  * Registers BOTH providers under the Payment module. In medusa-config.ts:

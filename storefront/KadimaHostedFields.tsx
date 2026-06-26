@@ -15,9 +15,10 @@
  */
 import { useEffect, useRef, useState } from "react"
 
-declare global {
-  interface Window { HostedFields?: any }
-}
+// HostedFields.js declares `class HostedFields` at global scope, which is a
+// global lexical binding — NOT a property on `window`. Reference it by bare
+// name (guarded with typeof so it doesn't throw before the script loads).
+declare const HostedFields: any
 
 type Session = {
   id: string
@@ -52,7 +53,7 @@ export function KadimaHostedFields({
 
     const loadScript = () =>
       new Promise<void>((resolve, reject) => {
-        if (window.HostedFields) return resolve()
+        if (typeof HostedFields !== "undefined") return resolve()
         const s = document.createElement("script")
         s.src = scriptUrl
         s.async = true
@@ -64,7 +65,7 @@ export function KadimaHostedFields({
     loadScript()
       .then(() => {
         if (cancelled) return
-        const form = window.HostedFields.create({
+        const form = HostedFields.create({
           token,
           amount,
           externalId: session.id, // ← reconciliation key (Medusa payment session id)

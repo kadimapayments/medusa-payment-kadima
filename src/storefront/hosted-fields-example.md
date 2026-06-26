@@ -40,7 +40,6 @@ So in Medusa terms:
   // paymentSession.data comes from Medusa's initiatePayment output
   const { hostedFieldsToken, amount, sessionId } = paymentSession.data
 
-  HostedFields.setToken(hostedFieldsToken)
   const form = HostedFields.create({
     token: hostedFieldsToken,
     amount,

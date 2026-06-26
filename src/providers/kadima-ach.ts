@@ -1,4 +1,8 @@
-import { AbstractPaymentProvider } from "@medusajs/framework/utils"
+import {
+  AbstractPaymentProvider,
+  ModuleProvider,
+  Modules,
+} from "@medusajs/framework/utils"
 import {
   AuthorizePaymentInput,
   AuthorizePaymentOutput,
@@ -175,4 +179,10 @@ class KadimaAchProviderService extends AbstractPaymentProvider<KadimaAchOptions>
   }
 }
 
-export default KadimaAchProviderService
+export { KadimaAchProviderService }
+
+// Default export is a Payment ModuleProvider so this file is registerable
+// directly via `resolve: "medusa-payment-kadima/providers/kadima-ach"`.
+export default ModuleProvider(Modules.PAYMENT, {
+  services: [KadimaAchProviderService],
+})

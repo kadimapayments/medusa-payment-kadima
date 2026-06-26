@@ -1,4 +1,9 @@
-import { AbstractPaymentProvider, BigNumber } from "@medusajs/framework/utils"
+import {
+  AbstractPaymentProvider,
+  BigNumber,
+  ModuleProvider,
+  Modules,
+} from "@medusajs/framework/utils"
 import {
   AuthorizePaymentInput,
   AuthorizePaymentOutput,
@@ -32,7 +37,7 @@ import {
 import { KadimaCardClient } from "../lib/kadima-card-client"
 import { KadimaVaultClient } from "../lib/kadima-vault-client"
 import { verifySignature } from "../lib/webhook"
-import { KadimaCardOptions } from "../types"
+import { KadimaCardOptions, DASHBOARD_HOSTS } from "../types"
 
 /**
  * Card provider. Synchronous. Merchant = terminal.id. Capture model is
@@ -68,6 +73,9 @@ class KadimaCardProviderService extends AbstractPaymentProvider<KadimaCardOption
       domain,
       saveCard: input.context?.account_holder ? "optional" : "disabled",
     })
+    const hfHost = this.options_.sandbox
+      ? DASHBOARD_HOSTS.sandbox
+      : DASHBOARD_HOSTS.prod
     return {
       // No Kadima transaction exists yet; use a local placeholder id.
       id: `kadima_hf_${hf.access_token.slice(-12)}`,
@@ -76,6 +84,9 @@ class KadimaCardProviderService extends AbstractPaymentProvider<KadimaCardOption
         terminalId: this.options_.terminalId,
         amount: input.amount,
         currency_code: input.currency_code,
+        // Tell the storefront which HostedFields.js host to load so the
+        // backend's `sandbox` flag drives the browser (no client-side guess).
+        hfScriptUrl: `${hfHost}/js/HostedFields.js`,
       },
     }
   }
@@ -267,4 +278,10 @@ class KadimaCardProviderService extends AbstractPaymentProvider<KadimaCardOption
   }
 }
 
-export default KadimaCardProviderService
+export { KadimaCardProviderService }
+
+// Default export is a Payment ModuleProvider so this file is registerable
+// directly via `resolve: "medusa-payment-kadima/providers/kadima-card"`.
+export default ModuleProvider(Modules.PAYMENT, {
+  services: [KadimaCardProviderService],
+})
