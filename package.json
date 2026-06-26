@@ -1,6 +1,6 @@
 {
   "name": "medusa-payment-kadima",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Medusa v2 payment provider for Kadima — direct card + ACH, no middle gateway",
   "license": "MIT",
   "private": false,
@@ -26,15 +26,18 @@
   "exports": {
     ".": {
       "types": "./.medusa/server/src/index.d.ts",
-      "import": "./.medusa/server/src/index.js"
+      "import": "./.medusa/server/src/index.js",
+      "default": "./.medusa/server/src/index.js"
     },
     "./providers/kadima-card": {
       "types": "./.medusa/server/src/providers/kadima-card.d.ts",
-      "import": "./.medusa/server/src/providers/kadima-card.js"
+      "import": "./.medusa/server/src/providers/kadima-card.js",
+      "default": "./.medusa/server/src/providers/kadima-card.js"
     },
     "./providers/kadima-ach": {
       "types": "./.medusa/server/src/providers/kadima-ach.d.ts",
-      "import": "./.medusa/server/src/providers/kadima-ach.js"
+      "import": "./.medusa/server/src/providers/kadima-ach.js",
+      "default": "./.medusa/server/src/providers/kadima-ach.js"
     }
   },
   "files": [
