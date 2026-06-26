@@ -32,7 +32,7 @@ import {
 import { KadimaCardClient } from "../lib/kadima-card-client"
 import { KadimaVaultClient } from "../lib/kadima-vault-client"
 import { verifySignature } from "../lib/webhook"
-import { KadimaCardOptions } from "../types"
+import { KadimaCardOptions, CARD_HOSTS, DASHBOARD_HOSTS } from "../types"
 
 /**
  * Card provider. Synchronous. Merchant = terminal.id. Capture model is
@@ -54,6 +54,15 @@ class KadimaCardProviderService extends AbstractPaymentProvider<KadimaCardOption
     this.options_ = options
     this.client = new KadimaCardClient(options)
     this.vault = new KadimaVaultClient(options)
+
+    // Startup diagnostics — makes credential/env mismatches obvious in deploy logs.
+    // (A 401 from Kadima almost always means sandbox≠where-the-token-lives, or token=MISSING.)
+    const sb = !!options.sandbox
+    console.info(
+      `[kadima-card] init — sandbox=${sb} · gateway=${sb ? CARD_HOSTS.sandbox : CARD_HOSTS.prod} · ` +
+        `dashboard=${sb ? DASHBOARD_HOSTS.sandbox : DASHBOARD_HOSTS.prod} · ` +
+        `terminal=${options.terminalId ?? "(unset)"} · token=${options.apiToken ? "set" : "MISSING"}`
+    )
   }
 
   /**

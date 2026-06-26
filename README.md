@@ -38,7 +38,7 @@ module.exports = defineConfig({
               dbaId: Number(process.env.KADIMA_DBA_ID), // for saved cards
               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
               captureMethod: "auth", // or "sale"
-              sandbox: process.env.NODE_ENV !== "production",
+              sandbox: process.env.KADIMA_SANDBOX === "true",
             },
           },
           {
@@ -49,7 +49,7 @@ module.exports = defineConfig({
               dbaId: Number(process.env.KADIMA_DBA_ID),
               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
               secCode: "WEB",
-              sandbox: process.env.NODE_ENV !== "production",
+              sandbox: process.env.KADIMA_SANDBOX === "true",
             },
           },
         ],
@@ -58,6 +58,24 @@ module.exports = defineConfig({
   ],
 })
 ```
+
+> ⚠️ **Set `sandbox` explicitly — do not derive it from `NODE_ENV`.** Most hosting
+> platforms (Railway, Render, Vercel, Heroku, Fly) set `NODE_ENV=production`, so
+> `NODE_ENV !== "production"` silently evaluates to `false` and your test build hits
+> the **live** Kadima hosts with sandbox credentials → `HTTP 401: invalid credentials`.
+> While testing, set `KADIMA_SANDBOX=true` in your env; unset it (or `false`) for production.
+> `sandbox: true` uses `sandbox.kadimadashboard.com` / `sandbox-gateway.kadimadashboard.com`;
+> `false` uses the live hosts. The token, terminal ID and DBA ID must come from the
+> **same** environment as the flag (a sandbox token on a live host, or vice-versa, is a 401).
+
+On startup each provider logs its resolved configuration so mismatches are obvious, e.g.:
+
+```
+[kadima-card] init — sandbox=true · gateway=https://sandbox-gateway.kadimadashboard.com · dashboard=https://sandbox.kadimadashboard.com · terminal=404 · token=set
+```
+
+If you see `token=MISSING`, the env var isn't set in your deployment. If `sandbox` or the
+host is wrong for your token, fix the flag and redeploy.
 
 Enable the providers in your sales channel / region, point your Kadima webhook at
 `https://<your-store>/hooks/payment/kadima-card` (and `/kadima-ach`), and add the

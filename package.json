@@ -1,6 +1,6 @@
 {
   "name": "medusa-payment-kadima",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Medusa v2 payment provider for Kadima — direct card + ACH, no middle gateway",
   "license": "MIT",
   "private": false,
@@ -39,7 +39,6 @@
   },
   "files": [
     ".medusa/server",
-    "src",
     "storefront",
     "README.md"
   ],

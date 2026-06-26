@@ -24,7 +24,7 @@ import {
 import { BigNumber } from "@medusajs/framework/utils"
 import { KadimaAchClient } from "../lib/kadima-ach-client"
 import { verifySignature } from "../lib/webhook"
-import { KadimaAchOptions } from "../types"
+import { KadimaAchOptions, DASHBOARD_HOSTS } from "../types"
 
 /**
  * ACH provider. ASYNCHRONOUS. Merchant = dba.id.
@@ -46,6 +46,14 @@ class KadimaAchProviderService extends AbstractPaymentProvider<KadimaAchOptions>
     super(container, options)
     this.options_ = options
     this.client = new KadimaAchClient(options)
+
+    // Startup diagnostics — surface env/credential mismatches in deploy logs.
+    const sb = !!options.sandbox
+    console.info(
+      `[kadima-ach] init — sandbox=${sb} · ` +
+        `host=${sb ? DASHBOARD_HOSTS.sandbox : DASHBOARD_HOSTS.prod}/api/ach · ` +
+        `dba=${options.dbaId ?? "(unset)"} · token=${options.apiToken ? "set" : "MISSING"}`
+    )
   }
 
   async initiatePayment(

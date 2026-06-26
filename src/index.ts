@@ -18,7 +18,9 @@ import KadimaAchProviderService from "./providers/kadima-ach"
  *               terminalId: Number(process.env.KADIMA_TERMINAL_ID),
  *               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
  *               captureMethod: "auth",      // or "sale"
- *               sandbox: process.env.NODE_ENV !== "production",
+ *               // Set explicitly — NODE_ENV is "production" on most hosts, which
+ *               // would silently send sandbox creds to the LIVE host (→ 401).
+ *               sandbox: process.env.KADIMA_SANDBOX === "true",
  *             },
  *           },
  *           {
@@ -29,6 +31,7 @@ import KadimaAchProviderService from "./providers/kadima-ach"
  *               dbaId: Number(process.env.KADIMA_DBA_ID),
  *               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
  *               secCode: "WEB",
+ *               sandbox: process.env.KADIMA_SANDBOX === "true",
  *             },
  *           },
  *         ],

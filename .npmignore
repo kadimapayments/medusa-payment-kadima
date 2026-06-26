@@ -1,0 +1,6 @@
+# Don't ship test files or the design/docs decks in the npm package.
+**/*.test.ts
+docs/
+# Strip any macOS/iCloud conflict copies that can appear in the build dir.
+**/* [0-9].js
+**/* [0-9].d.ts
