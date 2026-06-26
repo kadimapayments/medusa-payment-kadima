@@ -31,7 +31,9 @@ module.exports = defineConfig({
         providers: [
           {
             resolve: "medusa-payment-kadima/providers/kadima-card",
-            id: "kadima-card",
+            // No `id` needed — each provider class has a distinct `identifier`,
+            // so the provider id becomes `pp_kadima-card`. (Setting `id: "x"`
+            // would make it `pp_kadima-card_x` and change the webhook path.)
             options: {
               apiToken: process.env.KADIMA_TOKEN,
               terminalId: Number(process.env.KADIMA_TERMINAL_ID),
@@ -43,7 +45,6 @@ module.exports = defineConfig({
           },
           {
             resolve: "medusa-payment-kadima/providers/kadima-ach",
-            id: "kadima-ach",
             options: {
               apiToken: process.env.KADIMA_TOKEN,
               dbaId: Number(process.env.KADIMA_DBA_ID),
@@ -62,6 +63,11 @@ module.exports = defineConfig({
 Enable the providers in your sales channel / region, point your Kadima webhook at
 `https://<your-store>/hooks/payment/kadima-card` (and `/kadima-ach`), and add the
 storefront components from [`storefront/`](./storefront/README.md).
+
+> The webhook path segment is the provider id **without** the `pp_` prefix —
+> Medusa re-adds it internally (`pp_<segment>`). With the config above the ids are
+> `pp_kadima-card` / `pp_kadima-ach`, so the paths are `/hooks/payment/kadima-card`
+> and `/hooks/payment/kadima-ach`. If you set an `id`, the path changes accordingly.
 
 ## Status
 

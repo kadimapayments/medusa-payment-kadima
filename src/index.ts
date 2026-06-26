@@ -12,10 +12,10 @@ import { KadimaAchProviderService } from "./providers/kadima-ach"
  *         providers: [
  *           {
  *             resolve: "medusa-payment-kadima/providers/kadima-card",
- *             id: "kadima-card",
  *             options: {
- *               apiToken: process.env.KADIMA_CARD_TOKEN,
+ *               apiToken: process.env.KADIMA_TOKEN,
  *               terminalId: Number(process.env.KADIMA_TERMINAL_ID),
+ *               dbaId: Number(process.env.KADIMA_DBA_ID), // for saved cards
  *               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
  *               captureMethod: "auth",      // or "sale"
  *               sandbox: process.env.NODE_ENV !== "production",
@@ -23,12 +23,12 @@ import { KadimaAchProviderService } from "./providers/kadima-ach"
  *           },
  *           {
  *             resolve: "medusa-payment-kadima/providers/kadima-ach",
- *             id: "kadima-ach",
  *             options: {
- *               apiToken: process.env.KADIMA_ACH_TOKEN,
+ *               apiToken: process.env.KADIMA_TOKEN, // same token as card
  *               dbaId: Number(process.env.KADIMA_DBA_ID),
  *               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
  *               secCode: "WEB",
+ *               sandbox: process.env.NODE_ENV !== "production",
  *             },
  *           },
  *         ],
