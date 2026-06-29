@@ -17,6 +17,21 @@ import { useEffect, useRef, useState } from "react"
 
 declare global {
   interface Window { HostedFields?: any }
+  // HostedFields.js defines a top-level `class HostedFields` — a global *lexical*
+  // binding, NOT a property of window. So `window.HostedFields` is undefined; the
+  // bare global `HostedFields` is what resolves. Declare it for TS/bundlers.
+  const HostedFields: any
+}
+
+/**
+ * Resolve the HostedFields class across environments — CSP-safe (no eval/Function).
+ * Prefers window (future-proof if Kadima ever assigns it) then the bare lexical global.
+ */
+function resolveHostedFields(): any {
+  const w = window as any
+  if (w && w.HostedFields) return w.HostedFields
+  if (typeof HostedFields !== "undefined") return HostedFields
+  return null
 }
 
 type Session = {
@@ -52,7 +67,15 @@ export function KadimaHostedFields({
 
     const loadScript = () =>
       new Promise<void>((resolve, reject) => {
-        if (window.HostedFields) return resolve()
+        if (resolveHostedFields()) return resolve()
+        // Reuse an in-flight/previous tag instead of injecting duplicates.
+        const existing = document.querySelector<HTMLScriptElement>(`script[src="${scriptUrl}"]`)
+        if (existing) {
+          existing.addEventListener("load", () => resolve())
+          existing.addEventListener("error", () => reject(new Error("Failed to load HostedFields.js")))
+          if (resolveHostedFields()) resolve()
+          return
+        }
         const s = document.createElement("script")
         s.src = scriptUrl
         s.async = true
@@ -64,7 +87,13 @@ export function KadimaHostedFields({
     loadScript()
       .then(() => {
         if (cancelled) return
-        const form = window.HostedFields.create({
+        const HF = resolveHostedFields()
+        if (!HF) {
+          setStatus("error")
+          setMessage("Could not initialize the secure card library. Check that HostedFields.js loaded.")
+          return
+        }
+        const form = HF.create({
           token,
           amount,
           externalId: session.id, // ← reconciliation key (Medusa payment session id)
