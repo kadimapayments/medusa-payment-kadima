@@ -35,16 +35,22 @@ So in Medusa terms:
 <div id="card-holder-name"></div>
 <div id="submit-button"></div>
 
+<!-- In sandbox load https://sandbox.kadimadashboard.com/js/HostedFields.js instead.
+     The plugin passes the right URL to the React component as data.hfScriptUrl. -->
 <script src="https://kadimadashboard.com/js/HostedFields.js"></script>
 <script>
   // paymentSession.data comes from Medusa's initiatePayment output
-  const { hostedFieldsToken, amount, sessionId } = paymentSession.data
+  const { hostedFieldsToken, amount } = paymentSession.data
+  // externalId MUST be the Medusa payment session id (top-level, NOT in .data).
+  // The transaction/create webhook returns this id so Medusa matches & authorizes
+  // the order. Using paymentSession.data.sessionId (undefined) leaves the order
+  // stuck in "pending" forever.
+  const externalId = paymentSession.id
 
-  HostedFields.setToken(hostedFieldsToken)
   const form = HostedFields.create({
-    token: hostedFieldsToken,
-    amount,
-    externalId: sessionId,          // ← Medusa session_id, max 64 chars, unique
+    token: hostedFieldsToken,       // pass the token directly (there is no setToken())
+    amount,                         // Medusa v2 major units (e.g. 25.99) — no /100
+    externalId,                     // Medusa payment session id, max 64 chars, unique
     fields: {
       cardNumber:     { target: "#card-number" },
       cardExpiration: { target: "#card-expiration" },

@@ -38,6 +38,7 @@ module.exports = defineConfig({
               dbaId: Number(process.env.KADIMA_DBA_ID), // for saved cards
               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
               captureMethod: "auth", // or "sale"
+              storeUrl: process.env.KADIMA_STORE_URL, // REQUIRED for Hosted Fields — your storefront URL
               sandbox: process.env.KADIMA_SANDBOX === "true",
             },
           },
@@ -80,6 +81,24 @@ host is wrong for your token, fix the flag and redeploy.
 Enable the providers in your sales channel / region, point your Kadima webhook at
 `https://<your-store>/hooks/payment/kadima-card` (and `/kadima-ach`), and add the
 storefront components from [`storefront/`](./storefront/README.md).
+
+### Hosted Fields (card) requirements
+
+Two things trip up the card flow specifically:
+
+1. **Token permission.** The API token must have the **`api-creditcard-payment-read-write`**
+   permission (Kadima dashboard → Developers → Tokens). Without it, the Hosted Fields
+   token mint / card processing fails. (A token with only reporting/tickets scopes will
+   not work for card payments.)
+2. **`storeUrl` / domain.** Hosted Fields locks the card iframe to a domain. Set
+   `storeUrl` (`KADIMA_STORE_URL`) to the **exact origin your storefront runs on**
+   (e.g. `https://shop.example.com`, or your Railway/preview URL while testing). If the
+   page origin doesn't match, Kadima raises `hostedFields.error: "Invalid Domain"`.
+   The provider throws an actionable error at session creation if `storeUrl` is unset.
+
+The plugin loads the `HostedFields.js` asset that matches `sandbox` automatically
+(`sandbox.kadimadashboard.com` vs `kadimadashboard.com`) and passes it to the storefront
+component as `data.hfScriptUrl` — you don't hard-code it.
 
 ## Status
 

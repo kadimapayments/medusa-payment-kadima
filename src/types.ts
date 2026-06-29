@@ -18,6 +18,14 @@ export interface KadimaCardOptions {
   webhookSecret: string
   /** "auth" = authorize then capture later; "sale" = auth + capture together. */
   captureMethod?: "auth" | "sale"
+  /**
+   * Your storefront's full URL, e.g. "https://shop.example.com". REQUIRED for
+   * Hosted Fields: Kadima locks the card iframe to this domain and raises
+   * `hostedFields.error: "Invalid Domain"` if the page origin doesn't match.
+   * Set it from KADIMA_STORE_URL. The storefront may override per-session by
+   * passing `data.domain` to initiatePayment.
+   */
+  storeUrl?: string
   /** Use the sandbox gateway host. */
   sandbox?: boolean
 }

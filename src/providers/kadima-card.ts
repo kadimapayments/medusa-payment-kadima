@@ -72,7 +72,21 @@ class KadimaCardProviderService extends AbstractPaymentProvider<KadimaCardOption
   async initiatePayment(
     input: InitiatePaymentInput
   ): Promise<InitiatePaymentOutput> {
-    const domain = (input.data?.domain as string) ?? ""
+    // Hosted Fields locks the card iframe to a domain — it's REQUIRED on the
+    // token mint, and a mismatch throws `hostedFields.error: "Invalid Domain"`.
+    // Resolve from per-session data, else the configured storeUrl. Fail fast
+    // with an actionable message instead of a cryptic iframe error later.
+    let domain = (input.data?.domain as string) || this.options_.storeUrl || ""
+    if (!domain) {
+      throw new Error(
+        '[kadima-card] Hosted Fields needs your storefront domain. Set `storeUrl` ' +
+          '(e.g. KADIMA_STORE_URL="https://shop.example.com") on the kadima-card ' +
+          "provider, or pass data.domain when creating the payment session."
+      )
+    }
+    if (!/^https?:\/\//i.test(domain)) domain = "https://" + domain
+
+    const sb = !!this.options_.sandbox
     const hf = await this.client.createHostedFieldsToken({
       domain,
       saveCard: input.context?.account_holder ? "optional" : "disabled",
@@ -85,6 +99,9 @@ class KadimaCardProviderService extends AbstractPaymentProvider<KadimaCardOption
         terminalId: this.options_.terminalId,
         amount: input.amount,
         currency_code: input.currency_code,
+        // Load the HostedFields.js that matches the token's environment, so a
+        // sandbox token isn't sent to the production asset (and vice-versa).
+        hfScriptUrl: `${sb ? DASHBOARD_HOSTS.sandbox : DASHBOARD_HOSTS.prod}/js/HostedFields.js`,
       },
     }
   }

@@ -18,6 +18,8 @@ import KadimaAchProviderService from "./providers/kadima-ach"
  *               terminalId: Number(process.env.KADIMA_TERMINAL_ID),
  *               webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,
  *               captureMethod: "auth",      // or "sale"
+ *               // Your storefront URL — Hosted Fields locks the card iframe to it.
+ *               storeUrl: process.env.KADIMA_STORE_URL,
  *               // Set explicitly — NODE_ENV is "production" on most hosts, which
  *               // would silently send sandbox creds to the LIVE host (→ 401).
  *               sandbox: process.env.KADIMA_SANDBOX === "true",

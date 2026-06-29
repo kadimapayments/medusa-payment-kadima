@@ -18,7 +18,7 @@ provider, render:
 {session.provider_id === "pp_kadima-card_kadima-card" && (
   <KadimaHostedFields
     session={session}
-    amount={cart.total / 100}
+    amount={cart.total} {/* Medusa v2 totals are already major units (e.g. 25.99) — do NOT divide by 100 */}
     onPaid={() => completeCart(cart.id)}
   />
 )}
