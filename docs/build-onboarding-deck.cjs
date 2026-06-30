@@ -160,6 +160,7 @@ const dims = async (p) => { const m = await sharp(p).metadata(); return m.width 
       { t: "        dbaId: 466,            // for saved cards", c: BLUE },
       { t: "        webhookSecret: process.env.KADIMA_WEBHOOK,", c: T2 },
       { t: "        captureMethod: \"auth\", // or \"sale\"", c: T2 },
+      { t: "        storeUrl: process.env.KADIMA_STORE_URL,", c: BLUE },
       { t: "        sandbox: true } },", c: T2 },
       { t: "    { resolve: \"medusa-payment-kadima/providers/kadima-ach\",", c: GREEN },
       { t: "      id: \"kadima-ach\", options: {", c: T2 },

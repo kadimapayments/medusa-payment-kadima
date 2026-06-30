@@ -129,7 +129,11 @@ async function gradientPng(w = 1400, h = 60) {
     s.addText("Enable these permissions", { x: 8.1, y: 3.04, w: 4.3, h: 0.4, fontFace: HEAD, fontSize: 15, bold: true, color: WHITE, valign: "middle" })
     const perms = [["Transactions / Payments", "card auth, capture, refund, void"], ["ACH", "bank debits, status, void"], ["Customer Vault", "saved cards & recurring"], ["Webhooks / Events", "signed status events"]]
     perms.forEach((p, i) => { const y = 3.62 + i * 0.56; s.addImage({ data: ic.check, x: 7.55, y: y + 0.02, w: 0.22, h: 0.22 }); s.addText([{ text: p[0] + "  ", options: { bold: true, color: WHITE } }, { text: "— " + p[1], options: { color: MUTED } }], { x: 7.89, y, w: 4.6, h: 0.5, fontFace: BODY, fontSize: 11.5, valign: "middle" }) })
-    s.addText("Enable all of them so cards, ACH, saved cards and webhooks all work.", { x: 7.55, y: 5.95, w: 4.95, h: 0.42, fontFace: BODY, fontSize: 10.5, italic: true, color: MUTED, valign: "middle", lineSpacingMultiple: 1.05 })
+    s.addText([
+      { text: "Card payments need the ", options: { color: MUTED } },
+      { text: "api-creditcard-payment-read-write", options: { color: BLUE, fontFace: MONO } },
+      { text: " scope. Enable all available so ACH, saved cards & webhooks work too.", options: { color: MUTED } },
+    ], { x: 7.55, y: 5.78, w: 4.95, h: 0.62, fontFace: BODY, fontSize: 10, valign: "top", lineSpacingMultiple: 1.06 })
   }
 
   // 5 STEP 2 INSTALL
@@ -161,7 +165,9 @@ async function gradientPng(w = 1400, h = 60) {
       { t: "        terminalId: Number(process.env.KADIMA_TERMINAL_ID),", c: BLUE },
       { t: "        dbaId: Number(process.env.KADIMA_DBA_ID),", c: BLUE },
       { t: "        webhookSecret: process.env.KADIMA_WEBHOOK_SECRET,", c: T2 },
-      { t: "        captureMethod: \"auth\", sandbox: true } },", c: T2 },
+      { t: "        captureMethod: \"auth\",", c: T2 },
+      { t: "        storeUrl: process.env.KADIMA_STORE_URL, // your storefront URL", c: BLUE },
+      { t: "        sandbox: true } },", c: T2 },
       { t: "    { resolve: \"medusa-payment-kadima/providers/kadima-ach\",", c: GREEN },
       { t: "      id: \"kadima-ach\", options: {", c: T2 },
       { t: "        apiToken: process.env.KADIMA_TOKEN,", c: T2 },
@@ -172,7 +178,7 @@ async function gradientPng(w = 1400, h = 60) {
     card(s, 8.85, 1.8, 3.88, 4.45)
     s.addImage({ data: ic.gear, x: 9.15, y: 2.1, w: 0.42, h: 0.42 })
     s.addText("Then", { x: 9.7, y: 2.12, w: 2.8, h: 0.4, fontFace: HEAD, fontSize: 15, bold: true, color: WHITE, valign: "middle" })
-    const notes = ["Put your Kadima values in .env.", "Enable both providers in your region / sales channel.", "captureMethod: \"auth\" captures on fulfillment; \"sale\" captures now.", "Set sandbox explicitly — sandbox: true to test, false for live."]
+    const notes = ["Put your Kadima values + storeUrl (your storefront URL) in .env.", "storeUrl must match where the storefront runs — Hosted Fields locks to it.", "captureMethod: \"auth\" captures on fulfillment; \"sale\" captures now.", "Set sandbox explicitly — sandbox: true to test, false for live."]
     notes.forEach((n, i) => { s.addImage({ data: ic.check, x: 9.15, y: 2.78 + i * 0.9, w: 0.2, h: 0.2 }); s.addText(n, { x: 9.45, y: 2.72 + i * 0.9, w: 3.1, h: 0.85, fontFace: BODY, fontSize: 11, color: T2, valign: "top", lineSpacingMultiple: 1.1 }) })
 
     // Footgun callout — the #1 cause of a 401 on first deploy.
@@ -195,6 +201,11 @@ async function gradientPng(w = 1400, h = 60) {
       { t: "// node_modules/medusa-payment-kadima/storefront/", c: MUTED },
       { t: "KadimaHostedFields.tsx   KadimaAchForm.tsx   README.md  (wiring guide)", c: T2 },
     ], 11)
+    s.addText([
+      { text: "Pass ", options: { color: MUTED } },
+      { text: "amount={cart.total}", options: { color: BLUE, fontFace: MONO } },
+      { text: " to KadimaHostedFields — Medusa v2 totals are already in dollars, so don't divide by 100.", options: { color: MUTED } },
+    ], { x: 0.62, y: 6.35, w: 12, h: 0.4, fontFace: BODY, fontSize: 10.5, valign: "middle" })
   }
 
   // 8 STEP 5 WEBHOOK

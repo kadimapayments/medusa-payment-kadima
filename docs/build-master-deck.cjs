@@ -239,7 +239,7 @@ const aspect = async (p) => { const m = await sharp(p).metadata(); return m.widt
       { t: "// Medusa store — medusa-config.ts", c: MUTED },
       { t: "providers: [", c: T2 },
       { t: "  { resolve: \"medusa-payment-kadima/providers/kadima-card\",", c: GREEN },
-      { t: "    options: { apiToken, terminalId: 404, dbaId: 466,", c: T2 },
+      { t: "    options: { apiToken, terminalId: 404, dbaId: 466, storeUrl,", c: T2 },
       { t: "      webhookSecret, captureMethod: \"auth\" } },", c: T2 },
       { t: "  { resolve: \"medusa-payment-kadima/providers/kadima-ach\",", c: GREEN },
       { t: "    options: { apiToken, dbaId: 466, secCode: \"PPD\" } },", c: T2 },
